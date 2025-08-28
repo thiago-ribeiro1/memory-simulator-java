@@ -3,6 +3,11 @@
 Desenvolvemos um sistema em Java para simular o gerenciamento de memória. A interface gráfica foi criada com Java Swing
 e exibe uma grade 8x8 de unidades, cada uma representando 2 KB, totalizando 128 KB de memória física.
 
+---
+
+<img width="598" height="452" alt="Image" src="https://github.com/user-attachments/assets/176d560a-8177-43c7-889e-85d587b88476" />
+
+---
 ## Funcionamento
 
 O usuário pode escolher entre três algoritmos de alocação:
