@@ -1,0 +1,24 @@
+# Saída de compilação
+/out/
+/bin/
+/target/
+
+# Arquivos de bytecode/artefatos
+*.class
+*.jar
+*.war
+*.ear
+
+# Configurações de IDEs
+.idea/
+*.iml
+.vscode/
+*.project
+*.classpath
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
