@@ -53,7 +53,14 @@ javac -d out -encoding UTF-8 .\src\main\java\br\edu\unifacisa\*.java
 java -cp out br.edu.unifacisa.Main
 ```
 
+## Considerações
 
+No simulador todos os três funcionam, mas em termos de performance o First Fit é o mais rápido, já que para no primeiro 
+espaço que encontra sem precisar percorrer toda a lista. O Next Fit tem uma performance parecida, só que ele continua a 
+busca de onde parou na última alocação, evitando sobrecarregar sempre o início da memória. Já o Best Fit é o que mais 
+tenta aproveitar bem os espaços, mas como precisa analisar todos os blocos livres, acaba sendo o mais lento.
+
+Pensando em desempenho, o First Fit é o que se mostra melhor nesse projeto.
 
 
 
