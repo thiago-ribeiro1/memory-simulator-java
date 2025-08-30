@@ -10,7 +10,7 @@ public class SimulatorFrame extends JFrame {
     private final JComboBox<String> algoCombo;
     private final MemoryManager manager;
     private final MemoryPanel memoryPanel;
-    private final JTextField pidField;
+    private final JTextField processIdField;
     private final JSpinner sizeSpinner;
     private final JLabel statusLabel;
     private final DefaultTableModel tableModel;
@@ -50,10 +50,10 @@ public class SimulatorFrame extends JFrame {
         right.add(Box.createVerticalStrut(6));
 
         JPanel allocPanel = new JPanel(new GridLayout(0, 2, 6, 6));
-        pidField = new JTextField("P" + (int) (Math.random() * 100));
+        processIdField = new JTextField("P" + (int) (Math.random() * 100));
         sizeSpinner = new JSpinner(new SpinnerNumberModel(8, 2, 128, 2));
         allocPanel.add(new JLabel("Processo (ID):"));
-        allocPanel.add(pidField);
+        allocPanel.add(processIdField);
         allocPanel.add(new JLabel("Tamanho (KB):"));
         allocPanel.add(sizeSpinner);
         JButton allocBtn = new JButton("Alocar");
@@ -109,7 +109,7 @@ public class SimulatorFrame extends JFrame {
     }
 
     private String statusText(String state) {
-        return "status: " + state + "    time: " + manager.getClock();
+        return "status: " + state + "    time: " + manager.getSteps();
     }
 
     private void refresh() {
@@ -123,32 +123,32 @@ public class SimulatorFrame extends JFrame {
     }
 
     private void onAlloc() {
-        String pid = pidField.getText().trim();
+        String processId = processIdField.getText().trim();
         int size = (Integer) sizeSpinner.getValue();
-        if (pid.isEmpty()) {
+        if (processId.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Informe um ID.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        boolean ok = manager.allocate(pid, size);
+        boolean ok = manager.allocate(processId, size);
         if (!ok) {
             JOptionPane.showMessageDialog(this, "Falha na alocação. Memória insuficiente", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
-            processSize.put(pid, processSize.getOrDefault(pid, 0) + MemoryManager.align(size));
+            processSize.put(processId, processSize.getOrDefault(processId, 0) + MemoryManager.align(size));
         }
         refresh();
     }
 
     private void onFree() {
-        String pid = pidField.getText().trim();
-        if (pid.isEmpty()) {
+        String processId = processIdField.getText().trim();
+        if (processId.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Informe um ID para liberar.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        int released = manager.free(pid);
+        int released = manager.free(processId);
         if (released == 0) {
             JOptionPane.showMessageDialog(this, "ID não encontrado.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            processSize.remove(pid);
+            processSize.remove(processId);
         }
         refresh();
     }
@@ -175,11 +175,11 @@ public class SimulatorFrame extends JFrame {
             return;
         }
         if (op.type == Operation.Type.ALLOC) {
-            boolean ok = manager.allocate(op.pid, op.sizeKb);
-            if (ok) processSize.put(op.pid, processSize.getOrDefault(op.pid, 0) + MemoryManager.align(op.sizeKb));
+            boolean ok = manager.allocate(op.processId, op.sizeKb);
+            if (ok) processSize.put(op.processId, processSize.getOrDefault(op.processId, 0) + MemoryManager.align(op.sizeKb));
         } else {
-            manager.free(op.pid);
-            processSize.remove(op.pid);
+            manager.free(op.processId);
+            processSize.remove(op.processId);
         }
         refresh();
     }

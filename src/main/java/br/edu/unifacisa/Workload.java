@@ -10,7 +10,7 @@ public class Workload {
     public void clear() { ops.clear(); }
     @Override public String toString() { return ops.toString(); }
 
-    /** Cria uma carga de trabalho de demonstração simples */
+    // Cria uma carga de trabalho de demonstração simples
     public static Workload demo() {
         Workload w = new Workload();
         Random r = new Random(42);
@@ -19,8 +19,8 @@ public class Workload {
             int size = (r.nextInt(6) + 1) * 4; // múltiplos de 4 KB entre 4 e 24
             w.add(Operation.alloc("P" + i, size));
             if (i % 3 == 0) { // libera um processo anterior
-                int victim = i - 2;
-                if (victim > 0) w.add(Operation.free("P" + victim));
+                int processToFree = i - 2;
+                if (processToFree > 0) w.add(Operation.free("P" + processToFree));
             }
         }
         for (int i = 1; i <= 10; i++) w.add(Operation.free("P" + i));

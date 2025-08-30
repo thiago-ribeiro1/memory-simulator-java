@@ -5,9 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Renderiza a memória como uma grade 8x8 de unidades de 2 KB (total de 128 KB)
- */
+
 public class MemoryPanel extends JPanel {
     private final MemoryManager manager;
     private final Color[] palette;
@@ -42,15 +40,15 @@ public class MemoryPanel extends JPanel {
         int cellW = w / cols;
         int cellH = h / rows;
 
-        List<String> pidOrder = new ArrayList<>();
-        int[] owners = manager.snapshotUnitOwners(pidOrder);
+        List<String> processIdOrder = new ArrayList<>();
+        int[] unitOwners = manager.snapshotUnitOwners(processIdOrder);
 
         int idx = 0;
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
                 int x = c * cellW;
                 int y = r * cellH;
-                int owner = owners[idx++];
+                int owner = unitOwners[idx++];
                 if (owner >= 0) {
                     Color color = palette[owner % palette.length];
                     g2.setColor(color);
