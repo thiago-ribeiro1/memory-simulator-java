@@ -11,8 +11,8 @@
 
 # Configurações de IDEs
 .idea/
-*.iml
 .vscode/
+*.iml
 *.project
 *.classpath
 

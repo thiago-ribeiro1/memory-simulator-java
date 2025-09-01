@@ -16,7 +16,7 @@ public class NextFit implements AllocationAlgorithm {
             }
             i = (i + 1) % n;
         }
-        return -1;
+        return -1; // não encontrou bloco livre suficiente na memória
     }
 
     @Override

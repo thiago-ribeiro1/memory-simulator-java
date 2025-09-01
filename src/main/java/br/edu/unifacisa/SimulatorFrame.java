@@ -176,14 +176,14 @@ public class SimulatorFrame extends JFrame {
         }
         if (op.type == Operation.Type.ALLOC) {
             boolean ok = manager.allocate(op.processId, op.sizeKb);
-            if (ok) processSize.put(op.processId, processSize.getOrDefault(op.processId, 0) + MemoryManager.align(op.sizeKb));
+            if (ok)
+                processSize.put(op.processId, processSize.getOrDefault(op.processId, 0) + MemoryManager.align(op.sizeKb));
         } else {
             manager.free(op.processId);
             processSize.remove(op.processId);
         }
         refresh();
     }
-
 
     private void onRun() {
         if (workload.isEmpty()) {
@@ -203,7 +203,6 @@ public class SimulatorFrame extends JFrame {
             javax.swing.SwingUtilities.invokeLater(() -> statusLabel.setText(statusText("STOP")));
         }).start();
     }
-
 
     private void onReset() {
         manager.reset();

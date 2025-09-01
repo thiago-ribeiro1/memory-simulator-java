@@ -11,7 +11,7 @@ public class FirstFit implements AllocationAlgorithm {
             // Retorna o primeiro bloco livre com tamanho suficiente para a alocação (First Fit)
             if (b.free && b.sizeKb >= requiredKb) return i;
         }
-        return -1;
+        return -1; // não encontrou bloco livre suficiente na memória
     }
 
     @Override

@@ -19,7 +19,7 @@ public class MemoryPanel extends JPanel {
                 new Color(0x5D6D7E), // cinza aço
                 new Color(0x1ABC9C), // verde água frio
                 new Color(0x2E86C1), // azul médio
-                new Color(0x117A65), // verde escuro
+                new Color(0xFFD700), // amarelo
                 new Color(0x1B4F72), // azul escuro
                 new Color(0x145A32),  // verde bem escuro
                 new Color(0x2C3E50), // azul petróleo
@@ -29,7 +29,7 @@ public class MemoryPanel extends JPanel {
         };
     }
 
-    // Sobrescreve o metodo de pintura do painel: desenha a memória como uma grade 8x8
+    // Interface metodo de pintura do painel: desenha a memória como uma grade 8x8
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

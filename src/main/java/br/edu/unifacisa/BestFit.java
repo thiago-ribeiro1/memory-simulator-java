@@ -16,7 +16,7 @@ public class BestFit implements AllocationAlgorithm {
                 bestSize = b.sizeKb;
             }
         }
-        return bestIndex;
+        return bestIndex; // não encontrou bloco livre suficiente na memória
     }
 
     @Override
