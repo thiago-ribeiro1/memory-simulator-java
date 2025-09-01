@@ -23,7 +23,7 @@ public class MemoryManager {
         this.algorithm = algo;
     }
 
-    // Resetar memória para um único bloco livre
+    // Resetar memória
     public void reset() {
         blocks.clear();
         blocks.add(new MemoryBlock(0, TOTAL_KB, true, null));
@@ -35,7 +35,7 @@ public class MemoryManager {
         return steps;
     }
 
-    // Arredondar para múltiplo de UNIT_KB (2KB)
+    // Arredondar para múltiplo de UNIT_KB (2KB) números pares
     public static int align(int kb) {
         if (kb % UNIT_KB == 0) return kb;
         return kb + (UNIT_KB - (kb % UNIT_KB));
@@ -136,12 +136,6 @@ public class MemoryManager {
         blocks.add(index + 1, remainder);
     }
 
-    /**
-     * Faz junção no índice informado:
-     * - Se vizinho anterior for livre, junta.
-     * - Se vizinho seguinte for livre, junta.
-     * Retorna o índice do bloco resultante (pode mudar se colou com o anterior).
-     */
     private int joinAround(int i) {
         MemoryBlock current = blocks.get(i);
 
@@ -151,7 +145,7 @@ public class MemoryManager {
             if (prev.free) {
                 prev.sizeKb += current.sizeKb;
                 blocks.remove(i);
-                i--;                    // o bloco atual agora é o 'prev'
+                i--; // o bloco atual agora é o 'prev'
                 current = prev;
             }
         }
