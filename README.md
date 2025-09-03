@@ -29,7 +29,7 @@ retorna ao estado inicial.
 - Algoritmos de alocação: implementados via interface AllocationAlgorithm, com cada estratégia em uma classe distinta (
   FirstFit, NextFit, BestFit).
 - LinkedList: a memória é modelada como uma LinkedList<MemoryBlock>, onde cada nó representa um bloco (livre ou
-  ocupado). Essa estrutura facilita divisão (quando alocamos parte de um bloco) e junção (coalescência) de blocos
+  ocupado). Essa estrutura facilita divisão (quando alocamos parte de um bloco) e junção (adjacência) de blocos
   vizinhos livres após liberações.
 - Visualização: cada unidade de 2 KB é desenhada como uma célula colorida (executando) ou riscada em cinza (livre).
 
