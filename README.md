@@ -38,7 +38,7 @@ retorna ao estado inicial.
 - Requisitos: Java JDK 17
 - Para executar: abra o projeto na sua IDE e rode a classe Main.java
 
-## Como Rodar no Windows PowerShell
+## Como Rodar no Windows PowerShell (Opcional)
 
 - Abra o PowerShell na raiz do projeto
 - Execute este comando abaixo para compilar
